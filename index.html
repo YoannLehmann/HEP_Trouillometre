@@ -44,17 +44,35 @@
         <source src="videos/video1.mp4"/>
         Your browser does not support the video tag.
       </video>
+      <div id="webcam-result"></div>
+      <img id="snapshot-result" />
     </div>
   </div>
 
 
 <!-- Javascript
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script type="text/javascript" src="js/webcam.min.js"></script>
 <script>
   const SCREAMER_TIMEOUT = 2000; // In milisenconds.
+  const WEBCAM_WIDTH = 1980;
+  const WEBCAM_HEIGHT = 1080;
+  const JPEG_QUALITY = 10;
   let btnStart = document.getElementById("btn-start");
   let btnPause = document.getElementById("btn-pause");
   let video = document.getElementById("main-video");
+  let webcamResult = document.getElementById("webcam-result");
+  let snapshotResult = document.getElementById("snapshot-result");
+
+  // Webcam configuration.
+  // Doc : https://github.com/jhuckaby/webcamjs/blob/master/DOCS.md
+  Webcam.set({
+    width: WEBCAM_WIDTH,
+    height: WEBCAM_HEIGHT,
+    image_format: 'jpeg',
+    jpeg_quality: JPEG_QUALITY
+  });
+  Webcam.attach(webcamResult);
 
   btnStart.addEventListener("click", function(){
     console.log("The start button has been pressed!");
@@ -74,9 +92,14 @@
     console.log("The video started playing!");
   });
 
+  // Source : https://makitweb.com/how-to-capture-picture-from-webcam-with-webcam-js/
   function takePicture()
   {
     console.log("Picture taken !");
+    Webcam.snap( function(data_uri) {
+      console.log(data_uri);
+      snapshotResult.src = data_uri;
+    });
   };
 
   // Timer for the screamer.
