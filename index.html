@@ -21,6 +21,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
+  <link type="text/css" rel="stylesheet" href="libraries/lightGallery/src/css/lightgallery.css" />
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -45,14 +46,36 @@
         Your browser does not support the video tag.
       </video>
       <div id="webcam-result"></div>
+      <button class="button-primary" id="btn-freeze">Freeze</button>
       <img id="snapshot-result" />
+    </div>
+    <div class="row">
+      <div id="lightgallery">
+        <a href="images/bird.jpeg">
+          <img src="images/bird.jpeg" />
+        </a>
+        <a href="images/bird2.jpeg">
+          <img src="images/bird2.jpeg" />
+        </a>
+      </div>
     </div>
   </div>
 
 
 <!-- Javascript
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<script type="text/javascript" src="js/webcam.min.js"></script>
+<!-- jQuery version must be >= 1.8.0; -->
+<script src="libraries/jquery-3.4.1.min.js"></script>
+
+<!-- A jQuery plugin that adds cross-browser mouse wheel support. (Optional) -->
+<script src="libraries/lightGallery/lib/jquery.mousewheel.min.js"></script>
+
+<script src="libraries/lightGallery/dist/js/lightgallery.js"></script>
+
+<!-- lightgallery plugins -->
+<script src="libraries/lightGallery/modules/lg-thumbnail.min.js"></script>
+<script src="libraries/lightGallery/modules//lg-fullscreen.min.js"></script>
+<script type="text/javascript" src="libraries/webcam.min.js"></script>
 <script>
   const SCREAMER_TIMEOUT = 2000; // In milisenconds.
   const WEBCAM_WIDTH = 1980;
@@ -60,9 +83,16 @@
   const JPEG_QUALITY = 10;
   let btnStart = document.getElementById("btn-start");
   let btnPause = document.getElementById("btn-pause");
+  let btnFreeze = document.getElementById("btn-freeze");
   let video = document.getElementById("main-video");
   let webcamResult = document.getElementById("webcam-result");
   let snapshotResult = document.getElementById("snapshot-result");
+  let isFrozen = false;
+
+  // Gallery slider.
+  $(document).ready(function() {
+    $("#lightgallery").lightGallery();
+  });
 
   // Webcam configuration.
   // Doc : https://github.com/jhuckaby/webcamjs/blob/master/DOCS.md
@@ -88,6 +118,15 @@
     btnStart.hidden = false;
   });
 
+  btnFreeze.addEventListener("click", function(){
+
+    console.log("Freeze function");
+    (isFrozen) ? Webcam.unfreeze() : Webcam.freeze();
+    (isFrozen) ? btnFreeze.innerText = "Freeze" : btnFreeze.innerText = "Unfreeze";
+
+    isFrozen = !isFrozen;
+  });
+
   video.addEventListener("play", function(){
     console.log("The video started playing!");
   });
@@ -100,7 +139,7 @@
       console.log(data_uri);
       snapshotResult.src = data_uri;
     });
-  };
+  }
 
   // Timer for the screamer.
   window.setTimeout(function(){
