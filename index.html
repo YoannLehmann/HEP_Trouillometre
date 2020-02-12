@@ -77,10 +77,12 @@
 <script src="libraries/lightGallery/modules//lg-fullscreen.min.js"></script>
 <script type="text/javascript" src="libraries/webcam.min.js"></script>
 <script>
-  const SCREAMER_TIMEOUT = 2000; // In milisenconds.
-  const WEBCAM_WIDTH = 1980;
+  const SCREAMER_TIMEOUT = 5000; // In milisenconds.
+  const WEBCAM_WIDTH = 1920;
   const WEBCAM_HEIGHT = 1080;
-  const JPEG_QUALITY = 10;
+  const JPEG_QUALITY = 100;
+  const GALERY_MINIATURE_HEIGHT = 180;
+  const GALERY_MINIATURE_WIDTH = 180;
   let btnStart = document.getElementById("btn-start");
   let btnPause = document.getElementById("btn-pause");
   let btnFreeze = document.getElementById("btn-freeze");
@@ -88,6 +90,7 @@
   let webcamResult = document.getElementById("webcam-result");
   let snapshotResult = document.getElementById("snapshot-result");
   let isFrozen = false;
+  let gallery = document.getElementById("lightgallery");
 
   // Gallery slider.
   $(document).ready(function() {
@@ -138,11 +141,20 @@
     Webcam.snap( function(data_uri) {
       console.log(data_uri);
       snapshotResult.src = data_uri;
+      savePicture(data_uri);
     });
   }
 
+  function savePicture(data)
+  {
+    let newImage = document.createElement("img");
+    newImage.src = data;
+    newImage.height=180;
+    gallery.append(newImage);
+  }
+
   // Timer for the screamer.
-  window.setTimeout(function(){
+  window.setInterval(function(){
     console.log("Start screamer");
     takePicture();
   }, SCREAMER_TIMEOUT);
