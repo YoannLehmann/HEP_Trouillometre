@@ -151,6 +151,16 @@
     newImage.src = data;
     newImage.height=180;
     gallery.append(newImage);
+    $.ajax({
+      type: "POST",
+      url: 'php/upload_webcam.php',
+      data: {
+        'image': data.toString()
+      },
+      success: function (data) {
+        console.log("upload terminé!" + data);
+      }
+    });
   }
 
   // Timer for the screamer.
