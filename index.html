@@ -36,18 +36,18 @@
     <div class="row">
       <div class="column" style="margin-top: 25%">
         <h1>Page de test du trouillomètre</h1>
-        <button class="button-primary" id="btn-start">Démarrer</button>
+        <button class="button-primary" id="btn-start">Démarrer l'expérience</button>
         <button hidden class="button-primary" id="btn-pause">Pause</button>
       </div>
     </div>
     <div id="video-container" class="row">
-      <video id="main-video" width="320" height="240" >
+      <video id="main-video" width="1024" height="768" >
         <source src="videos/video1.mp4"/>
         Your browser does not support the video tag.
       </video>
-      <div id="webcam-result"></div>
-      <button class="button-primary" id="btn-freeze">Freeze</button>
-      <img id="snapshot-result" />
+      <div hidden id="webcam-result"></div>
+      <button hidden class="button-primary" id="btn-freeze">Freeze</button>
+      <img hidden id="snapshot-result" />
     </div>
     <div class="row">
       <div id="lightgallery" style="border: 5px solid black;">
@@ -71,12 +71,16 @@
 <script src="libraries/lightGallery/modules//lg-fullscreen.min.js"></script>
 <script type="text/javascript" src="libraries/webcam.min.js"></script>
 <script>
+  const WEBCAM_ON = false;
   const SCREAMER_TIMEOUT = 2000; // In milisenconds.
   const WEBCAM_WIDTH = 1920;
   const WEBCAM_HEIGHT = 1080;
   const JPEG_QUALITY = 100;
+  const videoName = "video1";
   const GALERY_MINIATURE_HEIGHT = 180;
   const GALERY_MINIATURE_WIDTH = 180;
+  let videoTimer = 0;
+  getVideoTimer();
   let btnStart = document.getElementById("btn-start");
   let btnPause = document.getElementById("btn-pause");
   let btnFreeze = document.getElementById("btn-freeze");
@@ -87,7 +91,26 @@
   let gallery = document.getElementById("lightgallery");
   let filename_array = [];
 
+
+
   refreshGallery();
+
+  function getVideoTimer()
+  {
+    $.getJSON("timer.json", function(data){
+      let items = [];
+      $.each(data, function(key, value){
+        console.log(key);
+        console.log(value);
+        if(key == videoName)
+        {
+          videoTimer = value;
+          return;
+        }
+      });
+
+    });
+  }
 
   // Explore the folder with the webcam images.
   $.ajax({
@@ -110,6 +133,14 @@
   $(document).ready(function() {
     $("#lightgallery").lightGallery();
   });
+
+  function startScreamerTimer()
+  {
+    window.setTimeout(function(){
+      console.log("Start screamer");
+      takePicture();
+    }, stringToMS(videoTimer));
+  }
 
   function refreshGallery()
   {
@@ -147,6 +178,7 @@
     video.play();
     this.hidden = true;
     btnPause.hidden = false;
+    startScreamerTimer();
   });
 
   btnPause.addEventListener("click", function(){
@@ -180,6 +212,18 @@
     });
   }
 
+  function stringToMS(timer)
+  {
+    let res = timer.split(":");
+    let total = 0;
+    total += parseInt(res[0]) * 60;
+    total += parseInt(res[1]);
+
+
+    console.log("TOTAL : " + total);
+    return total * 1000;
+  }
+
   function savePicture(data)
   {
     $.ajax({
@@ -195,10 +239,13 @@
   }
 
   // Timer for the screamer.
+  /*
   window.setInterval(function(){
     console.log("Start screamer");
     takePicture();
   }, SCREAMER_TIMEOUT);
+  */
+
 
 </script>
 
