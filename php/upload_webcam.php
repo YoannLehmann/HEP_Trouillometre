@@ -8,6 +8,4 @@
     $image_base64 = base64_decode($image_parts[1]);
     $file = $folderPath . uniqid() . "." . $image_type;
     file_put_contents($file, $image_base64);
-    chmod($file, 777);
-    echo "type : " . image_parts[0] . "\n\n";
-    echo "file path : " . $file . "\n\n";
+    chmod($file, 0777);

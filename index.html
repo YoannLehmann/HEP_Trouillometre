@@ -71,7 +71,7 @@
 <script src="libraries/lightGallery/modules//lg-fullscreen.min.js"></script>
 <script type="text/javascript" src="libraries/webcam.min.js"></script>
 <script>
-  const SCREAMER_TIMEOUT = 100000; // In milisenconds.
+  const SCREAMER_TIMEOUT = 2000; // In milisenconds.
   const WEBCAM_WIDTH = 1920;
   const WEBCAM_HEIGHT = 1080;
   const JPEG_QUALITY = 100;
@@ -86,6 +86,8 @@
   let isFrozen = false;
   let gallery = document.getElementById("lightgallery");
   let filename_array = [];
+
+  refreshGallery();
 
   // Explore the folder with the webcam images.
   $.ajax({
@@ -111,13 +113,22 @@
 
   function refreshGallery()
   {
+    // Delete all the nodes of the gallery.
+    gallery.childNodes = new Array();
+
     for(let i = 0; i < filename_array.length; i++)
     {
-      let newImage = document.createElement("img");
-      newImage.src = "images/webcam/" + filename_array[0];
-      newImage.height=180;
-      gallery.childNodes = new Array();
-      gallery.append(newImage);
+      let imageSrc = "images/webcam/" + filename_array[i];
+      let imageLinkDOM = document.createElement("a");
+      let imageDOM = document.createElement("img");
+
+      imageLinkDOM.href = imageSrc;
+      imageDOM.src = imageSrc;
+      imageDOM.height = 250;
+      imageDOM.width=250;
+
+      imageLinkDOM.append(imageDOM);
+      gallery.append(imageLinkDOM);
     }
   }
 
