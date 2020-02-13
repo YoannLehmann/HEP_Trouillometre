@@ -50,13 +50,7 @@
       <img id="snapshot-result" />
     </div>
     <div class="row">
-      <div id="lightgallery">
-        <a href="images/bird.jpeg">
-          <img src="images/bird.jpeg" />
-        </a>
-        <a href="images/bird2.jpeg">
-          <img src="images/bird2.jpeg" />
-        </a>
+      <div id="lightgallery" style="border: 5px solid black;">
       </div>
     </div>
   </div>
@@ -77,7 +71,7 @@
 <script src="libraries/lightGallery/modules//lg-fullscreen.min.js"></script>
 <script type="text/javascript" src="libraries/webcam.min.js"></script>
 <script>
-  const SCREAMER_TIMEOUT = 5000; // In milisenconds.
+  const SCREAMER_TIMEOUT = 100000; // In milisenconds.
   const WEBCAM_WIDTH = 1920;
   const WEBCAM_HEIGHT = 1080;
   const JPEG_QUALITY = 100;
@@ -91,11 +85,41 @@
   let snapshotResult = document.getElementById("snapshot-result");
   let isFrozen = false;
   let gallery = document.getElementById("lightgallery");
+  let filename_array = [];
+
+  // Explore the folder with the webcam images.
+  $.ajax({
+    type: "POST",
+    contentType: "json",
+    url: 'php/get_images_filenames.php',
+    success: function (data) {
+      console.log("liste des noms de fichiers : ");
+      console.log(data);
+      filename_array = JSON.parse(data);
+      refreshGallery();
+    },
+    error: function(data) {
+      console.log("ERROR FILENAME");
+      console.log(data);
+    }
+  });
 
   // Gallery slider.
   $(document).ready(function() {
     $("#lightgallery").lightGallery();
   });
+
+  function refreshGallery()
+  {
+    for(let i = 0; i < filename_array.length; i++)
+    {
+      let newImage = document.createElement("img");
+      newImage.src = "images/webcam/" + filename_array[0];
+      newImage.height=180;
+      gallery.childNodes = new Array();
+      gallery.append(newImage);
+    }
+  }
 
   // Webcam configuration.
   // Doc : https://github.com/jhuckaby/webcamjs/blob/master/DOCS.md
@@ -147,10 +171,6 @@
 
   function savePicture(data)
   {
-    let newImage = document.createElement("img");
-    newImage.src = data;
-    newImage.height=180;
-    gallery.append(newImage);
     $.ajax({
       type: "POST",
       url: 'php/upload_webcam.php',
