@@ -4,23 +4,23 @@
 
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>HEP-Bejune - Trouillomètre</title>
-  <meta name="description" content="">
-  <meta name="author" content="Yoann Lehmann">
+  <meta name="description" content="" />
+  <meta name="author" content="Yoann Lehmann" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css" />
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/skeleton.css" />
   <link type="text/css" rel="stylesheet" href="libraries/lightGallery/src/css/lightgallery.css" />
 
   <!-- Favicon
@@ -38,19 +38,20 @@
         <h1>Page de test du trouillomètre</h1>
         <button class="button-primary" id="btn-start">Démarrer l'expérience</button>
         <button hidden class="button-primary" id="btn-pause">Pause</button>
+        <button hidden class="button-primary" id="btn-display-gallery">Afficher toutes les photos</button>
       </div>
     </div>
     <div id="video-container" class="row">
-      <video id="main-video" width="1024" height="768" >
-        <source src="videos/video1.mp4"/>
+      <video id="main-video" width="1024" height="768" style="opacity: 0%;">
+        <source id="main-video-source" src="video/screamer1.mp4" />
         Your browser does not support the video tag.
       </video>
       <div hidden id="webcam-result"></div>
       <button hidden class="button-primary" id="btn-freeze">Freeze</button>
-      <img hidden id="snapshot-result" />
+      <img  hidden id="snapshot-result" src="images/webcam/pigeon.jpg"/>
     </div>
     <div class="row">
-      <div id="lightgallery" style="border: 5px solid black;">
+      <div hidden id="light-gallery" style="border: 5px solid black;">
       </div>
     </div>
   </div>

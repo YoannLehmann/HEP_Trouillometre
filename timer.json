@@ -1,4 +1,8 @@
 {
-  "video1": "0:24",
-  "video2": "0:30"
+	"selected": "screamer3",
+	"videos": {
+		"screamer1": "0:24",
+		"screamer2": "0:30",
+		"screamer3": "0:01"
+	}
 }
