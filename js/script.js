@@ -13,52 +13,45 @@ let videoName = "";
 let screamerTimer = 0;
 // DOM Elements.
 let btnStart = document.getElementById("btn-start");
-let btnPause = document.getElementById("btn-pause");
 let btnFreeze = document.getElementById("btn-freeze");
 let btnDisplayGallery = document.getElementById("btn-display-gallery");
 let video = document.getElementById("main-video");
+let snapshotResult = document.getElementById("snapshot-result")
 let webcamResult = document.getElementById("webcam-result");
-let snapshotResult = document.getElementById("snapshot-result");
 let gallery = document.getElementById("light-gallery");
 let videoSource = document.getElementById("main-video-source");
-let videoContainer = document.getElementById("video-container");
 let filenameArray = [];
 
 $(document).ready(function(e){
     // Initialisations.
+    initWebcam();
     getImagesFilenames();
     getInformationsFromJSON();
     // Events listener.
     btnStart.addEventListener("click", onBtnStartClickListener);
-    btnPause.addEventListener("click", onBtnPauseClickListener);
     btnFreeze.addEventListener("click", onBtnFreezeClickListener);
     btnDisplayGallery.addEventListener("click", onBtnDisplayGalleryClickListener);
 });
 
 function onBtnDisplayGalleryClickListener(e)
 {
+    refreshGallery();
     $('#snapshot-result').hide();
     $('#light-gallery').show();
+    $('#light-gallery').lightGallery({
+        closable : true
+    });
 }
 
 function onBtnStartClickListener(e)
 {
-    videoSource.src = "video/" + videoName;
+    videoSource.src = "video/" + videoName + ".mp4";
     video.load();
     $("#main-video").fadeTo( "slow" , 1, function() {
         video.play();
     });
     this.hidden = true;
-    btnPause.hidden = false;
     startScreamerTimer();
-}
-
-function onBtnPauseClickListener(e)
-{
-    video.pause();
-    this.hidden = true;
-    btnStart.innerHTML = "Reprendre la vidéo";
-    btnStart.hidden = false;
 }
 
 function onBtnFreezeClickListener(e)
@@ -102,12 +95,15 @@ function getInformationsFromJSON()
 // Explore the folder with the webcam images.
 function getImagesFilenames()
 {
+    filenameArray = null;
     jQuery.ajax({
         type: "POST",
         contentType: "JSON",
         url: "php/get_images_filenames.php"
     }).done(function(jsonData){
         filenameArray = JSON.parse(jsonData);
+        console.log("FilenameArray ; ");
+        console.log(filenameArray);
         refreshGallery();
     }).fail(function(error){
         console.log("ERROR get_image_filenames.php : " + error);
@@ -124,21 +120,33 @@ function startScreamerTimer()
 function refreshGallery()
 {
     // Delete all the nodes of the gallery.
-    gallery.childNodes = new Array();
+    while(gallery.childNodes.length > 0)
+    {
+        gallery.childNodes[gallery.childNodes.length - 1].remove();
+    }
 
     for(let i = 0; i < filenameArray.length; i++)
     {
         let imageSrc = "images/webcam/" + filenameArray[i];
+        let imageContainerDOM = document.createElement("div");
+        imageContainerDOM.className += "image-container";
         let imageLinkDOM = document.createElement("a");
         let imageDOM = document.createElement("img");
+
 
         imageLinkDOM.href = imageSrc;
         imageDOM.src = imageSrc;
         imageDOM.height = GALLERY_MINIATURE_HEIGHT;
         imageDOM.width=GALLERY_MINIATURE_WIDTH;
 
+        imageContainerDOM.setAttribute("data-src", imageSrc);
+
+
         imageLinkDOM.append(imageDOM);
-        gallery.append(imageLinkDOM);
+        imageContainerDOM.append(imageLinkDOM);
+
+        gallery.append(imageContainerDOM);
+
     }
 
     $('#light-gallery').lightGallery();
@@ -147,11 +155,11 @@ function refreshGallery()
 // Source : https://makitweb.com/how-to-capture-picture-from-webcam-with-webcam-js/
 function takePicture()
 {
-    /*Webcam.snap( function(data_uri) {
+    Webcam.snap( function(data_uri) {
         console.log(data_uri);
         snapshotResult.src = data_uri;
         savePicture(data_uri);
-    });*/
+    });
 
     window.setTimeout(function(){
         displaySnapshot();
@@ -191,6 +199,10 @@ function savePicture(data)
         },
         success: function (data) {
             console.log("upload terminé!" + data);
+            filenameArray.push(data);
+        },
+        error: function(error){
+            console.log("error while uploading your image." + error);
         }
     });
 }
