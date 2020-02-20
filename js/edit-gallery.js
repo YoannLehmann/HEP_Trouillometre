@@ -42,6 +42,7 @@ function refreshGallery()
         buttonRemoveDOM.className += 'button-remove';
         buttonRemoveDOM.imageSrc = imageSrc
         buttonRemoveDOM.addEventListener("click", removePicturePopUp);
+        buttonRemoveDOM.textContent = "Supprimer";
 
         imageDOM.height = 200;
         imageDOM.width= 300;

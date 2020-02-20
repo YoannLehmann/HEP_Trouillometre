@@ -9,10 +9,16 @@
 <!-- Main script -->
 
 <?php
-    if($_GET['page'] == 'edit')
+    if(!empty($_GET) && $_GET['page'] == 'edit')
     {
 ?>
     <script type="text/javascript" src="js/edit-gallery.js"></script>
+<?php
+    }
+    else if(!empty($_GET) && $_GET['page'] == 'displayGallery')
+    {
+?>
+    <script type="text/javascript" src="js/display-gallery.js"></script>
 <?php
     }
     else

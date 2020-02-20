@@ -33,6 +33,7 @@
       <div class="column" style="margin-top: 25%">
         <h1>Page d'édition de la gallerie.</h1>
         <a href='?page=home'><button>Retourner à l'accueil</button></a>
+        <a href='?page=displayGallery'><button>Afficher toutes les photos</button></a>
       </div>
     </div>
     <div id="gallery-row" class="row">

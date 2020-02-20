@@ -6,17 +6,17 @@ $imageSrc = $_SERVER['DOCUMENT_ROOT'] . "/HEP_Trouillometre/" . $_POST['imageSrc
 if(file_exists($imageSrc))
 {
     echo "file exists !";
-    unlink($imageSrc);
+    if(unlink($imageSrc))
+    {
+        echo "file deleted.";
+    }
+    else
+    {
+        echo "error while deleting your file.";
+    }
+
 }
 else
 {
     echo "file does not exists !";
 }
-
-/*if(file_exists($imageSrc)
-{
-    echo "ok"
-    /*if(unlink($imageSrc)){
-
-    };
-}*/

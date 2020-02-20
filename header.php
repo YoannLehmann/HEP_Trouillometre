@@ -33,12 +33,27 @@
 
 
   <style>
+
+    img#snapshot-result {
+        width: 1024px;
+        height: 728px;
+    }
+
+    div#light-gallery {
+        width: 1230px;
+    }
+
+    div#light-gallery div.image-container:nth-child(4n) {
+        margin-right: 0px;
+    }
+
     div#light-gallery div.image-container {
-      width: 180px; /* Taille à changer dynamiquement en javascript. */
-      height: 180px;
+      width: 300px; /* Taille à changer dynamiquement en javascript. */
+      height: 200px;
       position: relative;
       display: inline-block;
       margin-bottom: 50px;
+      margin-right: 10px;
     }
 
     div#light-gallery button {

@@ -8,18 +8,18 @@ const VIDEO_HEIGHT = 768;
 const AFTER_SCREAMER_TIMER = 2000;
 
 // Variables.
-let isFrozen = false;
 let videoName = "";
 let screamerTimer = 0;
 // DOM Elements.
 let btnStart = document.getElementById("btn-start");
-let btnFreeze = document.getElementById("btn-freeze");
 let btnDisplayGallery = document.getElementById("btn-display-gallery");
+let btnEdit = document.getElementById('btn-edit');
 let video = document.getElementById("main-video");
 let snapshotResult = document.getElementById("snapshot-result")
 let webcamResult = document.getElementById("webcam-result");
 let gallery = document.getElementById("light-gallery");
 let videoSource = document.getElementById("main-video-source");
+let videoContainer = document.getElementById('video-container');
 let filenameArray = [];
 
 $(document).ready(function(e){
@@ -29,22 +29,11 @@ $(document).ready(function(e){
     getInformationsFromJSON();
     // Events listener.
     btnStart.addEventListener("click", onBtnStartClickListener);
-    btnFreeze.addEventListener("click", onBtnFreezeClickListener);
-    btnDisplayGallery.addEventListener("click", onBtnDisplayGalleryClickListener);
 });
-
-function onBtnDisplayGalleryClickListener(e)
-{
-    refreshGallery();
-    $('#snapshot-result').hide();
-    $('#light-gallery').show();
-    $('#light-gallery').lightGallery({
-        closable : true
-    });
-}
 
 function onBtnStartClickListener(e)
 {
+    $('#video-container').show();
     videoSource.src = "video/" + videoName + ".mp4";
     video.load();
     $("#main-video").fadeTo( "slow" , 1, function() {
@@ -52,13 +41,6 @@ function onBtnStartClickListener(e)
     });
     this.hidden = true;
     startScreamerTimer();
-}
-
-function onBtnFreezeClickListener(e)
-{
-    (isFrozen) ? Webcam.unfreeze() : Webcam.freeze();
-    (isFrozen) ? btnFreeze.innerText = "Freeze" : btnFreeze.innerText = "Unfreeze";
-    isFrozen = !isFrozen;
 }
 
 // Webcam configuration.
@@ -171,9 +153,9 @@ function displaySnapshot()
     // @TODO Display the real snapshot.
     $("#main-video").fadeTo( "slow" , 0, function() {
         $('#btn-start').hide();
-        $('#btn-pause').hide();
         $('#main-video').hide();
         $('#btn-display-gallery').show();
+        $('#btn-home').show();
         $('#snapshot-result').show();
     });
 }
