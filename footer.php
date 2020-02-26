@@ -24,7 +24,7 @@
     else
     {
 ?>
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
 <?php
     }
 ?>

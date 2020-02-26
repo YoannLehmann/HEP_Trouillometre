@@ -2,24 +2,18 @@
 const WEBCAM_WIDTH = 1920;
 const WEBCAM_HEIGHT = 1080;
 const JPEG_QUALITY = 100;
-const GALLERY_MINIATURE_HEIGHT = 180;
-const GALLERY_MINIATURE_WIDTH = 180;
-const VIDEO_HEIGHT = 768;
-const AFTER_SCREAMER_TIMER = 2000;
+const AFTER_SCREAMER_TIMER = 3000;
 
 // Variables.
-let videoName = "";
-let screamerTimer = 0;
+let videoName = "screamer1";
+let screamerTimer = 10;
 // DOM Elements.
 let btnStart = document.getElementById("btn-start");
-let btnDisplayGallery = document.getElementById("btn-display-gallery");
-let btnEdit = document.getElementById('btn-edit');
 let video = document.getElementById("main-video");
 let snapshotResult = document.getElementById("snapshot-result")
-let webcamResult = document.getElementById("webcam-result");
 let gallery = document.getElementById("light-gallery");
 let videoSource = document.getElementById("main-video-source");
-let videoContainer = document.getElementById('video-container');
+let webcamResult = document.getElementById('webcam-result');
 let filenameArray = [];
 
 $(document).ready(function(e){
@@ -39,7 +33,8 @@ function onBtnStartClickListener(e)
     $("#main-video").fadeTo( "slow" , 1, function() {
         video.play();
     });
-    this.hidden = true;
+    $('#btn-start').hide();
+    $('#subtitle').hide();
     startScreamerTimer();
 }
 
@@ -99,47 +94,12 @@ function startScreamerTimer()
     }, stringToMS(screamerTimer));
 }
 
-function refreshGallery()
-{
-    // Delete all the nodes of the gallery.
-    while(gallery.childNodes.length > 0)
-    {
-        gallery.childNodes[gallery.childNodes.length - 1].remove();
-    }
-
-    for(let i = 0; i < filenameArray.length; i++)
-    {
-        let imageSrc = "images/webcam/" + filenameArray[i];
-        let imageContainerDOM = document.createElement("div");
-        imageContainerDOM.className += "image-container";
-        let imageLinkDOM = document.createElement("a");
-        let imageDOM = document.createElement("img");
-
-
-        imageLinkDOM.href = imageSrc;
-        imageDOM.src = imageSrc;
-        imageDOM.height = GALLERY_MINIATURE_HEIGHT;
-        imageDOM.width=GALLERY_MINIATURE_WIDTH;
-
-        imageContainerDOM.setAttribute("data-src", imageSrc);
-
-
-        imageLinkDOM.append(imageDOM);
-        imageContainerDOM.append(imageLinkDOM);
-
-        gallery.append(imageContainerDOM);
-
-    }
-
-    $('#light-gallery').lightGallery();
-}
-
 // Source : https://makitweb.com/how-to-capture-picture-from-webcam-with-webcam-js/
 function takePicture()
 {
     Webcam.snap( function(data_uri) {
-        console.log(data_uri);
-        snapshotResult.src = data_uri;
+        $('#snapshot-result').css('background-image', 'url(\'' + data_uri + '\')');
+        //snapshotResult.src = data_uri;
         savePicture(data_uri);
     });
 
@@ -150,13 +110,15 @@ function takePicture()
 
 function displaySnapshot()
 {
-    // @TODO Display the real snapshot.
-    $("#main-video").fadeTo( "slow" , 0, function() {
+    $("#main-video").fadeTo( "slow" , 1, function() {
+        $('#subtitle').text("Wow vous avez vraiment eu la trouille ...");
+        $('#subtitle').show();
         $('#btn-start').hide();
         $('#main-video').hide();
-        $('#btn-display-gallery').show();
         $('#btn-home').show();
         $('#snapshot-result').show();
+        $('#snapshot-result').css('display', 'block');
+        $('#btn-home').css('display', 'block');
     });
 }
 

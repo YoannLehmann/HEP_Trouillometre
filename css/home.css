@@ -1,0 +1,78 @@
+div#home-first-row {
+
+}
+
+div#home-first-row h1 {
+    text-align: center;
+    font-size: 4.5em;
+    font-family: ScaryFont2;
+    color: red;
+}
+
+div#home-first-row h2 {
+    text-align: center;
+    font-size: 3em;
+    font-family: ScaryFont2;
+    color: red;
+    margin-top: 50px;
+}
+
+div#home-first-row button#btn-start {
+    margin: 250px auto;
+    display: block;
+    height: 200px;
+    width: 200px;
+    border-radius: 200px;
+    background-color: red;
+    font-family: ScaryFont2;
+    font-size: 25px;
+    line-height: 50px;
+    border-color: black;
+    border-width: 20px;
+}
+
+div#home-first-row button#btn-start:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
+
+div#home-second-row {
+    width: 100%;
+}
+
+div#home-second-row div#video-container video#main-video {
+    width: 1200px;
+    height: 700px;
+    display: block;
+    margin: 100px auto;
+    opacity: 0%;
+}
+
+div#home-second-row div#snapshot-result {
+    width: 1200px;
+    height: 600px;
+    margin: 0 auto;
+    background-position: center;
+    background-size: 90%;
+    background-repeat: no-repeat;
+}
+
+button#btn-home{
+    margin: 25px auto;
+    width: 250px;
+    height: 75px;
+    background-color: red;
+    font-size: 18px;
+    font-family: ScaryFont2;
+    color: black;
+    border-color: black;
+    border-width: 10px;
+    border-radius: 50px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+button#btn-home:hover {
+    cursor: pointer;
+    opacity: 80%;
+}

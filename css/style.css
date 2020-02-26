@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'ScaryFont';
+    src: url('../fonts/Gypsy_Curse.ttf'); /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-family: 'ScaryFont2';
+    src: url('../fonts/csnpwdt.ttf'); /* IE9 Compat Modes */
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    overflow: hidden;
+}
+div#main-container {
+    width: 1200px;
+    display: block;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
