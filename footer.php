@@ -21,6 +21,12 @@
     <script type="text/javascript" src="js/display-gallery.js"></script>
 <?php
     }
+    else if(!empty($_GET) && $_GET['page'] == 'edit-video')
+    {
+?>
+    <script type="text/javascript" src="js/edit-video.js"></script>
+<?php
+    }
     else
     {
 ?>

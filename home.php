@@ -9,7 +9,7 @@
         <div hidden id="webcam-result"></div>
         <div hidden id="video-container" class="row">
             <video id="main-video" >
-                <source id="main-video-source" src="video/screamer1.mp4" />
+                <source id="main-video-source" />
                 Your browser does not support the video tag.
             </video>
         </div>

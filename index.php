@@ -11,6 +11,10 @@
         {
             require_once('display_gallery.php');
         }
+        else if($_GET['page'] == 'edit-video')
+        {
+            require_once('edit_video.php');
+        }
         else
         {
             require_once('home.php');

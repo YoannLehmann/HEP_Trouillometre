@@ -2,7 +2,7 @@
 const WEBCAM_WIDTH = 1920;
 const WEBCAM_HEIGHT = 1080;
 const JPEG_QUALITY = 100;
-const AFTER_SCREAMER_TIMER = 3000;
+const AFTER_SCREAMER_TIMER = 1000;
 
 // Variables.
 let videoName = "screamer1";
@@ -18,8 +18,8 @@ let filenameArray = [];
 
 $(document).ready(function(e){
     // Initialisations.
+    $.ajaxSetup({ cache:false });
     initWebcam();
-    getImagesFilenames();
     getInformationsFromJSON();
     // Events listener.
     btnStart.addEventListener("click", onBtnStartClickListener);
@@ -66,24 +66,6 @@ function getInformationsFromJSON()
                 screamerTimer = value;
             }
         });
-    });
-}
-
-// Explore the folder with the webcam images.
-function getImagesFilenames()
-{
-    filenameArray = null;
-    jQuery.ajax({
-        type: "POST",
-        contentType: "JSON",
-        url: "php/get_images_filenames.php"
-    }).done(function(jsonData){
-        filenameArray = JSON.parse(jsonData);
-        console.log("FilenameArray ; ");
-        console.log(filenameArray);
-        refreshGallery();
-    }).fail(function(error){
-        console.log("ERROR get_image_filenames.php : " + error);
     });
 }
 

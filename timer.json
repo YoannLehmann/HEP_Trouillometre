@@ -1,8 +1,1 @@
-{
-	"selected": "screamer2",
-	"videos": {
-		"screamer1": "0:24",
-		"screamer2": "0:30",
-		"screamer3": "0:15"
-	}
-}
+{"selected":"video/screamer3.mp4","videos":{"video/screamer1.mp4":"2:13","video/screamer2.mp4":"54:42","video/screamer3.mp4":"2:15"}}
