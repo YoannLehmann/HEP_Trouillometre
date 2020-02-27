@@ -28,7 +28,7 @@ $(document).ready(function(e){
 function onBtnStartClickListener(e)
 {
     $('#video-container').show();
-    videoSource.src = "video/" + videoName + ".mp4";
+    videoSource.src = videoName;
     video.load();
     $("#main-video").fadeTo( "slow" , 1, function() {
         video.play();
