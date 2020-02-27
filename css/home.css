@@ -18,7 +18,8 @@ div#home-first-row h2 {
 }
 
 div#home-first-row button#btn-start {
-    margin: 250px auto;
+    margin: 0px auto;
+    margin-top: 225px;
     display: block;
     height: 200px;
     width: 200px;
@@ -42,7 +43,7 @@ div#home-second-row {
 
 div#home-second-row div#video-container video#main-video {
     width: 1200px;
-    height: 700px;
+    height: 600px;
     display: block;
     margin: 100px auto;
     opacity: 0%;

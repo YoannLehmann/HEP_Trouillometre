@@ -1,0 +1,75 @@
+div#gallery-first-row {
+    width: 1230px;
+}
+
+div#gallery-first-row h1 {
+    color: red;
+    font-family: ScaryFont2;
+}
+
+div#gallery-first-row button#btn-edit {
+
+}
+
+div#gallery-second-row {
+    width: 1230px;
+}
+
+div#gallery-second-row div#light-gallery {
+    width: 100%;
+    margin-top: 25px;
+}
+
+div#gallery-second-row div#light-gallery a {
+    display: block;
+    width: 300px;
+    height: 200px;
+}
+
+div#gallery-second-row div#light-gallery div.image-container {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+div#gallery-second-row div#light-gallery div.image-container {
+    margin-right: 10px;
+}
+div#gallery-second-row div#light-gallery div.image-container:nth-child(4n) {
+    margin-right: 0px;
+}
+
+div#gallery-edit-row {
+    width: 1230px;
+    margin: 25px 0 auto auto;
+}
+
+div#gallery-edit-row div.image-container {
+    width: 300px;
+    display: inline-block;
+    margin-bottom: 40px;
+    position: relative;
+    margin-right: 10px;
+}
+
+div#gallery-edit-row div.image-container:nth-child(4n) {
+    margin-right: 0px;
+}
+
+div#gallery-edit-row div.image-container button.button-remove {
+    width: 100%;
+    position: absolute;
+    background-color: red;
+    bottom: -35px;
+    left: 0;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-radius: 10px;
+    color: black;
+    border-color: black;
+    border-width: 5px;
+}
+
+div#gallery-edit-row div.image-container button.button-remove:hover {
+    cursor: pointer;
+    opacity: 80%;
+}

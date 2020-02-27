@@ -1,14 +1,11 @@
- <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row">
-      <div class="column" style="margin-top: 25%">
-        <h1>Page de test du trouillomètre</h1>
-        <a href='?page=home'><button id='btn-home'>Retourner à l'accueil</button></a>
-        <a href='?page=edit'><button id="btn-edit">Modifier les photos</button></a>
-      </div>
+<link type="text/css" rel="stylesheet" href="css/admin.css" />
+  <div id="main-container">
+    <div id="gallery-first-row">
+        <h1>Administration du trouillomètre</h1>
+        <a href='?page=edit'><button id="btn-edit">Supprimer des photos</button></a>
+        <button id="btn-refresh">Raffraîchir la page</button>
     </div>
-    <div id="gallery-row" class="row">
+    <div id="gallery-second-row">
       <div id="light-gallery"></div>
     </div>
   </div>

@@ -1,12 +1,17 @@
-let gallery = document.getElementById('gallery-row');
+let gallery = document.getElementById('gallery-edit-row');
 let filenameArray = null;
 
 $(document).ready(function()
 {
     getImagesFilenames();
-
+    $('#btn-refresh').click(refreshPage);
 
 })
+
+function refreshPage()
+{
+    getImagesFilenames();
+}
 
 // Explore the folder with the webcam images.
 function getImagesFilenames()

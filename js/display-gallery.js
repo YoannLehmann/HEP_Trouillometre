@@ -3,13 +3,19 @@ let filenameArray = null;
 
 $(document).ready(function()
 {
-    getImagesFilenames();
+    $('#btn-refresh').click(refreshPage);
+    refreshPage();
 })
+
+function refreshPage()
+{
+    getImagesFilenames();
+    $('#light-gallery').lightGallery();
+}
 
 // Explore the folder with the webcam images.
 function getImagesFilenames()
 {
-    filenameArray = null;
     jQuery.ajax({
         type: "POST",
         contentType: "JSON",
@@ -53,5 +59,4 @@ function refreshGallery()
         gallery.append(imageContainerDOM);
     }
 
-    $('#light-gallery').lightGallery();
 }
