@@ -24,7 +24,7 @@ $(document).ready(function(e){
 
 function onVideoNameSelectChangeListener()
 {
-    if(this.value.length != 0)
+    if(this.value != 0)
     {
         videoSource.setAttribute("src", selectVideoTitle.options[selectVideoTitle.selectedIndex].text);
         let timeInMS = stringToMS(this.value);

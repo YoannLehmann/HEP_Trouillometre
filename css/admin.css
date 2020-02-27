@@ -5,6 +5,13 @@ div#gallery-first-row {
 div#gallery-first-row h1 {
     color: red;
     font-family: ScaryFont2;
+    font-size: 30px;
+}
+
+div#gallery-first-row h2 {
+    color: red;
+    font-family: ScaryFont2;
+    font-size: 25px;
 }
 
 div#gallery-first-row button#btn-edit {
@@ -72,4 +79,34 @@ div#gallery-edit-row div.image-container button.button-remove {
 div#gallery-edit-row div.image-container button.button-remove:hover {
     cursor: pointer;
     opacity: 80%;
+}
+
+
+select {
+    margin-bottom: 25px;
+}
+
+p {
+    color: white;
+    width: 700px;
+    margin-bottom: 25px;
+}
+
+label {
+    color: white;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+input {
+    width: 35px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+#video-preview {
+    border-width: 2px;
+    border-color: white;
+    display: block;
+    width: 700px;
 }
