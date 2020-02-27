@@ -59,9 +59,28 @@ function saveChanges()
             url: 'php/save_timer.php'
         }).done(function(data){
             selectVideoTitle.options[selectVideoTitle.selectedIndex].value = newTimer;
-            console.log(data);
+
+            $( "#information-area" ).fadeIn(1000, function() {
+                // Animation complete
+                $( "#information-area" ).fadeOut(2000, function() {
+                    // Animation complete
+                });
+            });
+            $('#information-area').addClass('success');
+            $('#information-text').text("Les changements ont été correctement validés!");
+            $('#information-text').addClass('success');
         }).fail(function(error){
-            console.log(error);
+            $( "#information-area" ).fadeIn(1000, function() {
+                // Animation complete
+                $( "#information-area" ).fadeOut(2000, function() {
+                    // Animation complete
+                });
+            });console.log(error);
+
+            $('#information-area').show();
+            $('#information-area').addClass('error');
+            $('#information-text').text("Erreur lors de votre requête.");
+            $('#information-text').addClass('error');
         });
     });
 }

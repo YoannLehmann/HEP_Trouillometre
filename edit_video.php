@@ -16,6 +16,9 @@
         <input id="ipt-seconds" type="number" max="59" min="0" value="0"/>
         <br/>
         <button id="btn-save">Sauvegarder les changements</button>
+        <div hidden id="information-area">
+            <p id="information-text"></p>
+        </div>
     </div>
 
     <div id="video-container" class="row">

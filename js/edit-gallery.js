@@ -79,12 +79,30 @@ function removePicture(imageSrc)
             'imageSrc': imageSrc
         },
         success: function (data) {
-            console.log("Picture successfuly deleted!" + data);
             getImagesFilenames();
+
+            $( "#information-area" ).fadeIn(1000, function() {
+                // Animation complete
+                $( "#information-area" ).fadeOut(2000, function() {
+                    // Animation complete
+                });
+            });
+            $('#information-area').addClass('success');
+            $('#information-text').text("Les photo a correctement été supprimée.");
+            $('#information-text').addClass('success');
         },
         error: function(error){
-            console.log("Error while deleting your image.");
-            console.log(error);
+            $( "#information-area" ).fadeIn(1000, function() {
+                // Animation complete
+                $( "#information-area" ).fadeOut(2000, function() {
+                    // Animation complete
+                });
+            });
+
+            $('#information-area').show();
+            $('#information-area').addClass('error');
+            $('#information-text').text("Erreur lors de la suppression de la photo.");
+            $('#information-text').addClass('error');
         }
     });
 }
