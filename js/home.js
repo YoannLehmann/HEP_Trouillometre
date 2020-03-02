@@ -100,9 +100,10 @@ function displaySnapshot()
     $("#main-video").fadeTo( "slow" , 1, function() {
         $('body').css('background-color', 'white');
         $('#home-first-row').show();
+        $('#main-title').hide();
+        $('#mystery-box').hide();
         $('#subtitle').css('margin-bottom', '25px');
-        $('#mystery-box').css('margin-bottom', '25px');
-        $('#main-title').css('margin-bottom', '25px');
+        $('#subtitle').css('margin-top', '100px');
         $('#subtitle').text("Wow vous avez vraiment eu la trouille ...");
         $('#subtitle').show();
         $('#btn-start').hide();
