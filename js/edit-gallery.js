@@ -88,7 +88,7 @@ function removePicture(imageSrc)
                 });
             });
             $('#information-area').addClass('success');
-            $('#information-text').text("Les photo a correctement été supprimée.");
+            $('#information-text').text("La photo a correctement été supprimée.");
             $('#information-text').addClass('success');
         },
         error: function(error){

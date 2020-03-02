@@ -27,6 +27,7 @@ $(document).ready(function(e){
 
 function onBtnStartClickListener(e)
 {
+    $('#home-first-row').hide();
     $('#video-container').show();
     videoSource.src = videoName;
     video.load();
@@ -93,6 +94,10 @@ function takePicture()
 function displaySnapshot()
 {
     $("#main-video").fadeTo( "slow" , 1, function() {
+        $('#home-first-row').show();
+        $('#subtitle').css('margin-bottom', '25px');
+        $('#mystery-box').css('margin-bottom', '25px');
+        $('#main-title').css('margin-bottom', '25px');
         $('#subtitle').text("Wow vous avez vraiment eu la trouille ...");
         $('#subtitle').show();
         $('#btn-start').hide();

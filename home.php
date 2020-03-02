@@ -1,9 +1,10 @@
 <link type="text/css" rel="stylesheet" href="css/home.css" />
 <div id="main-container">
     <div id="home-first-row">
-        <h1>Trouillometre de la HEP-BEJUNE</h1>
+        <h1 id="main-title">Boîte mystère</h1>
+        <div id="mystery-box"/></div>
         <h2 id="subtitle">Oserez-vous presser sur le bouton ?</h2>
-        <button class="button-primary" id="btn-start">Demarrer l experience</button>
+        <button class="button-primary" id="btn-start">Démarrer l&apos;experience</button>
     </div>
     <div id="home-second-row">
         <div hidden id="webcam-result"></div>
@@ -15,5 +16,5 @@
         </div>
         <div hidden id="snapshot-result" />
     </div>
-    <a href='?page=home'><button hidden id='btn-home'>Retourner a l accueil</button></a>
+    <a href='?page=home'><button hidden id='btn-home'>Retourner a l&apos;accueil</button></a>
 </div>
