@@ -28,6 +28,7 @@ function onVideoNameSelectChangeListener()
     {
         videoSource.setAttribute("src", selectVideoTitle.options[selectVideoTitle.selectedIndex].text);
         let timeInMS = stringToMS(this.value);
+        console.log("timeInMS : " + timeInMS);
         inputSeconds.value = (timeInMS / 1000) % 60;
         inputMinutes.value = Math.floor(timeInMS / (1000 * 60));
         videoPreview.load();
@@ -116,6 +117,13 @@ function getInformationsFromJSON()
                 inputSeconds.setAttribute("value",((timeInMS / 1000) % 60).toString());
                 inputMinutes.setAttribute("value",((timeInMS / 1000 * 60) % 60).toString());
             }
+
+            $('#select-video-title > option').each(function(){
+                if(this.text == videoName)
+                {
+                    $('#select-video-title').val(this.value);
+                }
+            });
         });
     });
 

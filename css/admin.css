@@ -3,15 +3,22 @@ div#gallery-first-row {
 }
 
 div#gallery-first-row h1 {
-    color: red;
-    font-family: ScaryFont2;
+    font-family: "Roboto Light";
     font-size: 30px;
 }
 
 div#gallery-first-row h2 {
-    color: red;
-    font-family: ScaryFont2;
+    font-family: "Roboto Light";
     font-size: 25px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+div#gallery-first-row div#video-edit-container {
+    border: 3px solid black;
+    padding: 10px 25px;
+    border-radius: 10px;
+    background-color: whitesmoke;
 }
 
 div#gallery-first-row button#btn-edit {
@@ -87,13 +94,11 @@ select {
 }
 
 p {
-    color: white;
     width: 700px;
     margin-bottom: 25px;
 }
 
 label {
-    color: white;
     margin-bottom: 15px;
     margin-top: 15px;
 }

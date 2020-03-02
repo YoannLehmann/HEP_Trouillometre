@@ -1,5 +1,6 @@
 <!-- jQuery -->
 <script src="libraries/jquery-3.4.1.min.js"></script>
+<script src="libraries/jquery.color-2.1.2.min.js"></script>
 <script src="libraries/lightGallery/lib/jquery.mousewheel.min.js"></script>
   <!-- Lightgallery plugins -->
 <script src="libraries/lightGallery/dist/js/lightgallery.js"></script>

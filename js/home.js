@@ -2,7 +2,7 @@
 const WEBCAM_WIDTH = 1920;
 const WEBCAM_HEIGHT = 1080;
 const JPEG_QUALITY = 100;
-const AFTER_SCREAMER_TIMER = 1000;
+const AFTER_SCREAMER_TIMER = 5000;
 
 // Variables.
 let videoName = "screamer1";
@@ -34,6 +34,10 @@ function onBtnStartClickListener(e)
     $("#main-video").fadeTo( "slow" , 1, function() {
         video.play();
     });
+    console.log(screamerTimer);
+    $("body").animate({
+       backgroundColor: 'black'
+    }, stringToMS(screamerTimer) / 8);
     $('#btn-start').hide();
     $('#subtitle').hide();
     startScreamerTimer();
@@ -94,6 +98,7 @@ function takePicture()
 function displaySnapshot()
 {
     $("#main-video").fadeTo( "slow" , 1, function() {
+        $('body').css('background-color', 'white');
         $('#home-first-row').show();
         $('#subtitle').css('margin-bottom', '25px');
         $('#mystery-box').css('margin-bottom', '25px');
