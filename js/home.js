@@ -6,7 +6,8 @@ const AFTER_SCREAMER_TIMER = 5000;
 
 // Variables.
 let videoName = "screamer1";
-let screamerTimer = 10;
+let screamerTimer = 10
+let videoFileArray = [];
 // DOM Elements.
 let btnStart = document.getElementById("btn-start");
 let video = document.getElementById("main-video");
@@ -78,17 +79,56 @@ function startScreamerTimer()
 {
     window.setTimeout(function(){
         takePicture();
+        video.stop();
     }, stringToMS(screamerTimer));
 }
 
 // Source : https://makitweb.com/how-to-capture-picture-from-webcam-with-webcam-js/
 function takePicture()
 {
+    videoFileArray = [];
+
+    /*
     Webcam.snap( function(data_uri) {
-        $('#snapshot-result').css('background-image', 'url(\'' + data_uri + '\')');
+        $('#snapshot1-result').css('background-image', 'url(\'' + data_uri + '\')');
         //snapshotResult.src = data_uri;
         savePicture(data_uri);
     });
+
+    */
+
+    // Snapshot 1.
+    window.setTimeout(function(){
+        Webcam.snap( function(data_uri) {
+            $('#snapshot1-result').css('background-image', 'url(\'' + data_uri + '\')');
+            savePicture(data_uri);
+        });
+    }, 500);
+
+
+    // Snapshot 2.
+    window.setTimeout(function(){
+        Webcam.snap( function(data_uri) {
+            $('#snapshot2-result').css('background-image', 'url(\'' + data_uri + '\')');
+            savePicture(data_uri);
+        });
+    }, 1000);
+
+    // Snapshot 3.
+    window.setTimeout(function(){
+        Webcam.snap( function(data_uri) {
+            $('#snapshot3-result').css('background-image', 'url(\'' + data_uri + '\')');
+            savePicture(data_uri);
+        });
+    }, 1500);
+
+    // Snapshot 4.
+    window.setTimeout(function(){
+        Webcam.snap( function(data_uri) {
+            $('#snapshot4-result').css('background-image', 'url(\'' + data_uri + '\')');
+            savePicture(data_uri);
+        });
+    }, 2000);
 
     window.setTimeout(function(){
         displaySnapshot();
@@ -101,16 +141,23 @@ function displaySnapshot()
         $('body').css('background-color', 'white');
         $('#home-first-row').show();
         $('#main-title').hide();
-        $('#mystery-box').hide();
+        $('#hep-icon').hide();
         $('#subtitle').css('margin-bottom', '25px');
         $('#subtitle').css('margin-top', '100px');
-        $('#subtitle').text("Wow vous avez vraiment eu la trouille ...");
+        $('#subtitle').text("Voici votre réaction lorsque vous avez la trouille.\n Merci de garder cet effet de surprise pour vous et de ne pas le dévoiler lorsque vous sortez de la cabine, afin de permettre aux autres personnes de pouvoir profiter pleinement de l'expérience,");
+        $('#subtitle').css('font-size', '2em');
         $('#subtitle').show();
         $('#btn-start').hide();
         $('#main-video').hide();
         $('#btn-home').show();
-        $('#snapshot-result').show();
-        $('#snapshot-result').css('display', 'block');
+        $('#snapshot1-result').show();
+        $('#snapshot1-result').css('display', 'block');
+        $('#snapshot2-result').show();
+        $('#snapshot2-result').css('display', 'block');
+        $('#snapshot3-result').show();
+        $('#snapshot3-result').css('display', 'block');
+        $('#snapshot4-result').show();
+        $('#snapshot4-result').css('display', 'block');
         $('#btn-home').css('display', 'block');
     });
 }
@@ -128,6 +175,7 @@ function stringToMS(timer)
 
 function savePicture(data)
 {
+    videoFileArray.push(data);
     $.ajax({
         type: "POST",
         url: 'php/upload_webcam.php',

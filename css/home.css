@@ -1,5 +1,5 @@
-div#mystery-box {
-    background-image: url("../images/mystery_box.jpg");
+div#hep-icon {
+    background-image: url("../images/hep.jpeg");
     width: 30%;
     height: 200px;
     float: right;
@@ -17,14 +17,13 @@ div#home-first-row {
 
 div#home-first-row h1 {
     text-align: left;
-    font-size: 6.6em;
+    font-size: 4.8em;
     width: 70%;
     float: left;
     font-family: "Roboto Light";
     height: 200px;
-    line-height: 200px;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 75px;
 }
 
 div#home-first-row h2 {
@@ -32,8 +31,9 @@ div#home-first-row h2 {
     text-align: center;
     font-size: 3em;
     margin-top: 0;
-    margin-bottom: 150px;
+    margin-bottom: 125px;
     width: 100%;
+    float: left;
 }
 
 div#home-first-row button#btn-start
@@ -79,15 +79,37 @@ div#home-second-row div#video-container video#main-video {
     opacity: 0%;
 }
 
-div#home-second-row div#snapshot-result {
-    width: 80%;
-    margin: 0 auto;
-    background-position: center;
-    background-size: 90%;
+div#home-second-row div#snapshot1-result,
+div#home-second-row div#snapshot2-result,
+div#home-second-row div#snapshot3-result,
+div#home-second-row div#snapshot4-result {
+    width: 50%;
+    background-size: 100%;
     background-repeat: no-repeat;
-    height: 500px;
+    height: 335px;
     background-color: black;
 }
+
+div#home-second-row div#snapshot1-result,
+div#home-second-row div#snapshot2-result {
+    background-position: center;
+}
+
+div#home-second-row div#snapshot3-result,
+div#home-second-row div#snapshot4-result {
+    background-position: center;
+}
+
+div#home-second-row div#snapshot1-result,
+div#home-second-row div#snapshot3-result{
+    float: left;
+}
+
+div#home-second-row div#snapshot2-result,
+div#home-second-row div#snapshot4-result{
+    float : right;
+}
+
 
 button#btn-home{
     margin: 25px auto;
