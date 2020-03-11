@@ -1,4 +1,4 @@
-<link type="text/css" rel="stylesheet" href="css/admin.css" />
+﻿<link type="text/css" rel="stylesheet" href="css/admin.css" />
   <div id="main-container">
     <div id="gallery-first-row">
         <h1>Administration du trouillometre</h1>
@@ -7,6 +7,6 @@
         <button id="btn-refresh">Raffraîchir la page</button>
     </div>
     <div id="gallery-second-row">
-      <div id="light-gallery"></div>
+      
     </div>
   </div>

@@ -1,16 +1,16 @@
-let gallery = document.getElementById('light-gallery');
+
 let filenameArray = null;
 
 $(document).ready(function()
 {
-    $('#btn-refresh').click(refreshPage);
+	$('#btn-refresh').click(refreshPage);
     refreshPage();
+	
 })
 
 function refreshPage()
 {
     getImagesFilenames();
-    $('#light-gallery').lightGallery();
 }
 
 // Explore the folder with the webcam images.
@@ -31,10 +31,16 @@ function getImagesFilenames()
 function refreshGallery()
 {
     // Delete all the nodes of the gallery.
+	/*
     while(gallery.childNodes.length > 0)
     {
-        gallery.childNodes[gallery.childNodes.length - 1].remove();
+        //gallery.childNodes[gallery.childNodes.length - 1].remove();
     }
+	*/
+	$('#light-gallery').remove();
+
+	let lightGalleryContainer = document.createElement("div");
+	lightGalleryContainer.id = "light-gallery";
 
     for(let i = 0; i < filenameArray.length; i++)
     {
@@ -46,6 +52,7 @@ function refreshGallery()
 
 
         imageLinkDOM.href = imageSrc;
+		imageLinkDOM.className += "item-link";
         imageDOM.src = imageSrc;
         imageDOM.height = 200;
         imageDOM.width= 300;
@@ -56,7 +63,10 @@ function refreshGallery()
         imageLinkDOM.append(imageDOM);
         imageContainerDOM.append(imageLinkDOM);
 
-        gallery.append(imageContainerDOM);
+        lightGalleryContainer.append(imageContainerDOM);
     }
+	$('#gallery-second-row').append(lightGalleryContainer);
+	$('#lightgallery').lightGallery();
+	
 
 }

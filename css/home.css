@@ -26,7 +26,15 @@ div#home-first-row h1 {
     margin-bottom: 75px;
 }
 
-div#home-first-row h2 {
+div#home-first-row h2#info-after-screamer {
+    font-size: 22px;
+    margin-top: 25px;
+    text-align: center;
+    font-family: 'Roboto Light';
+    line-height: 35px;
+}
+
+div#home-first-row h2#subtitle {
     font-family: "Roboto Light";
     text-align: center;
     font-size: 3em;
@@ -54,9 +62,11 @@ div#home-first-row button#btn-start
     text-transform: uppercase;
 }
 
-div#home-first-row button#btn-start:hover {
+div#home-first-row button#btn-start:hover,
+div#home-first-row button#btn-start.hover {
     cursor: pointer;
     opacity: 80%;
+	position: relative;
 }
 
 div#home-second-row {
@@ -83,10 +93,10 @@ div#home-second-row div#snapshot1-result,
 div#home-second-row div#snapshot2-result,
 div#home-second-row div#snapshot3-result,
 div#home-second-row div#snapshot4-result {
-    width: 50%;
+    width: 40%;
     background-size: 100%;
     background-repeat: no-repeat;
-    height: 335px;
+    height: 270px;
     background-color: black;
 }
 
@@ -98,16 +108,19 @@ div#home-second-row div#snapshot2-result {
 div#home-second-row div#snapshot3-result,
 div#home-second-row div#snapshot4-result {
     background-position: center;
+	margin-bottom: 35px;
 }
 
 div#home-second-row div#snapshot1-result,
 div#home-second-row div#snapshot3-result{
     float: left;
+	margin-left: 10%;
 }
 
 div#home-second-row div#snapshot2-result,
 div#home-second-row div#snapshot4-result{
     float : right;
+	margin-right: 10%;
 }
 
 

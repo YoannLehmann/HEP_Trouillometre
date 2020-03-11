@@ -1,8 +1,12 @@
 // Constants.
-const WEBCAM_WIDTH = 1920;
-const WEBCAM_HEIGHT = 1080;
-const JPEG_QUALITY = 100;
-const AFTER_SCREAMER_TIMER = 5000;
+const WEBCAM_WIDTH = 1920; // in px.
+const WEBCAM_HEIGHT = 1080; // in px.
+const JPEG_QUALITY = 100; // in %.
+const AFTER_SCREAMER_TIMER = 11000; // in ms.
+const TIME_AFTER_SCREAMER = 0;
+const TIME_AFTER_FIRST_SNAPSHOT = TIME_AFTER_SCREAMER + 1000; // in ms.
+const TIME_AFTER_SECOND_SNAPSHOT = TIME_AFTER_FIRST_SNAPSHOT + 1000; // in ms.
+const TIME_AFTER_THIRD_SNAPSHOT = TIME_AFTER_SECOND_SNAPSHOT + 1000; // in ms.
 
 // Variables.
 let videoName = "screamer1";
@@ -18,6 +22,11 @@ let webcamResult = document.getElementById('webcam-result');
 let filenameArray = [];
 
 $(document).ready(function(e){
+	$('button').hover(function(){
+		$(this).addClass('hover');
+	}, function(){
+		$(this).removeClass('hover');
+	});
     // Initialisations.
     $.ajaxSetup({ cache:false });
     initWebcam();
@@ -103,7 +112,7 @@ function takePicture()
             $('#snapshot1-result').css('background-image', 'url(\'' + data_uri + '\')');
             savePicture(data_uri);
         });
-    }, 500);
+    }, TIME_AFTER_SCREAMER);
 
 
     // Snapshot 2.
@@ -112,7 +121,7 @@ function takePicture()
             $('#snapshot2-result').css('background-image', 'url(\'' + data_uri + '\')');
             savePicture(data_uri);
         });
-    }, 1000);
+    }, TIME_AFTER_FIRST_SNAPSHOT);
 
     // Snapshot 3.
     window.setTimeout(function(){
@@ -120,7 +129,7 @@ function takePicture()
             $('#snapshot3-result').css('background-image', 'url(\'' + data_uri + '\')');
             savePicture(data_uri);
         });
-    }, 1500);
+    }, TIME_AFTER_SECOND_SNAPSHOT);
 
     // Snapshot 4.
     window.setTimeout(function(){
@@ -128,7 +137,7 @@ function takePicture()
             $('#snapshot4-result').css('background-image', 'url(\'' + data_uri + '\')');
             savePicture(data_uri);
         });
-    }, 2000);
+    }, TIME_AFTER_THIRD_SNAPSHOT);
 
     window.setTimeout(function(){
         displaySnapshot();
@@ -142,11 +151,7 @@ function displaySnapshot()
         $('#home-first-row').show();
         $('#main-title').hide();
         $('#hep-icon').hide();
-        $('#subtitle').css('margin-bottom', '25px');
-        $('#subtitle').css('margin-top', '100px');
-        $('#subtitle').text("Voici votre réaction lorsque vous avez la trouille.\n Merci de garder cet effet de surprise pour vous et de ne pas le dévoiler lorsque vous sortez de la cabine, afin de permettre aux autres personnes de pouvoir profiter pleinement de l'expérience,");
-        $('#subtitle').css('font-size', '2em');
-        $('#subtitle').show();
+        $('#info-after-screamer').show();
         $('#btn-start').hide();
         $('#main-video').hide();
         $('#btn-home').show();
